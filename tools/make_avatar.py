@@ -94,7 +94,7 @@ prev.paste(blink_img, (S + 8, 0))
 prev.resize(((S * 2 + 8) * SCALE, S * SCALE), Image.NEAREST).save(
     r"D:\Project\STM32Project\stm32-oled-hal\_check\avatar_preview.png")
 
-header = f"""/* avatar.h - 64x64 像素头像点阵（由 _check/make_avatar.py 生成，勿手改）
+header = f"""/* avatar.h - 64x64 像素头像点阵（由 tools/make_avatar.py 生成，勿手改）
  *
  * 格式：逐行存放，每行 8 字节，最高位(0x80)是左边的像素，共 64 行 = 512 字节。
  * 与工程里 16x16 汉字字模的位序一致（MSB 在左），用 draw_bitmap() 绘制。
