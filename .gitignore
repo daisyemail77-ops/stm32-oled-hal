@@ -1,0 +1,17 @@
+# Keil MDK 编译输出
+Objects/
+Listings/
+*.uvguix.*
+*.log
+*.dep
+*.map
+*.htm
+
+# 生成物 / 临时文件
+_check/
+_report.html
+
+# 系统
+Thumbs.db
+desktop.ini
+.DS_Store
