@@ -31,6 +31,7 @@ pre { background: #f7f7f8; border: 1px solid #dcdcdc; border-left: 3px solid #8a
 pre code { background: none; padding: 0; font-size: 8.8pt; line-height: 1.5; }
 img { max-width: 100%; display: block; margin: 10px auto 4px; }
 p > img { page-break-inside: avoid; }
+.fig { break-inside: avoid; page-break-inside: avoid; margin: 10px 0 2px; }
 .cap { text-align: center; margin: 2px 0 10px; }
 em { color: #444; font-style: normal; font-size: 9.3pt; }
 blockquote { border-left: 4px solid #c0c8d0; margin: 8px 0; padding: 4px 10px;
@@ -169,8 +170,11 @@ def convert(md_text: str) -> str:
             buf.append(lines[i].strip())
             i += 1
         text = " ".join(buf)
+        # a paragraph that is only an image: keep it on one page together with its caption
+        if text.startswith("![") and text.rstrip().endswith(")"):
+            out.append(f'<p class="fig">{inline(text)}</p>')
         # a paragraph that is only an italic caption, e.g. "*图 3-1 ...*"
-        if re.match(r"^\*[^*].*\*$", text):
+        elif re.match(r"^\*[^*].*\*$", text):
             out.append(f'<p class="cap">{inline(text)}</p>')
         else:
             out.append(f"<p>{inline(text)}</p>")
